@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Найди пары 💕</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="hearts.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("NUxupNWDmMnKYd338");
+        })();
+    </script>
+    <style>
+        html {
+            overflow: auto;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffeef8 0%, #fff5f7 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 100px 20px 150px 20px;
+            position: relative;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(255, 192, 203, 0.6);
+            border-radius: 12px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: "Hi Melody Cyrillic", "Hi Melody", serif;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            z-index: 1000;
+            opacity: 1 !important;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .game-header h1 {
+            font-family: "Hi Melody Cyrillic", "Hi Melody", serif;
+            font-size: 48px;
+            color: #ff69b4;
+            margin: 0 0 10px 0;
+        }
+
+        .game-header p {
+            font-family: "Hi Melody Cyrillic", "Hi Melody", serif;
+            font-size: 24px;
+            color: #ff69b4;
+            margin: 0;
+        }
+
+        .game-stats {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: "Hi Melody Cyrillic", "Hi Melody", serif;
+            font-size: 28px;
+            color: #ff69b4;
+        }
+
+        .memory-game {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 100px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            perspective: 1000px;
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+
+        .memory-card.flip {
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.matched {
+            pointer-events: none;
+            animation: fadeOut 0.8s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                transform: rotateY(180deg) scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: rotateY(180deg) scale(1.1);
+            }
+            100% {
+                opacity: 0;
+                transform: rotateY(180deg) scale(0.3);
+            }
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            font-size: 50px;
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #ffd6e8 0%, #ffe4f0 100%);
+            border: 3px solid rgba(255, 192, 203, 0.6);
+        }
+
+        .card-back {
+            background: white;
+            transform: rotateY(180deg);
+            border: 3px solid rgba(255, 192, 203, 0.8);
+        }
+
+        .card-front::before {
+            content: '💝';
+            font-size: 60px;
+        }
+
+        .win-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffeef8 0%, #fff5f7 100%);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.5s ease;
+            overflow-y: auto;
+        }
+
+        .win-screen.show {
+            display: flex;
+        }
+
+        .win-content {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            max-width: 500px;
+            margin: 20px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        .win-content h2 {
+            font-family: "Hi Melody Cyrillic", "Hi Melody", serif;
+            font-size: 48px;
+            color: #ff69b4;
+            margin: 0 0 20px 0;
+        }
+
+        .win-content p {
+            font-family: "Hi Melody Cyrillic", "Hi Melody", serif;
+            font-size: 28px;
+            color: #ff69b4;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .prize-box {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid rgba(255, 192, 203, 0.6);
+        }
+
+        .prize-box .prize-emoji {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .prize-box .prize-text {
+            font-family: "Hi Melody Cyrillic", "Hi Melody", serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff69b4;
+        }
+
+        .wish-input {
+            width: 100%;
+            padding: 15px;
+            font-family: "Hi Melody Cyrillic", "Hi Melody", serif;
+            font-size: 20px;
+            border: 2px solid rgba(255, 192, 203, 0.6);
+            border-radius: 10px;
+            margin-top: 15px;
+            box-sizing: border-box;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .wish-input:focus {
+            outline: none;
+            border-color: #ff69b4;
+        }
+
+        .save-wish-btn {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-family: "Hi Melody Cyrillic", "Hi Melody", serif;
+            font-size: 24px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s;
+        }
+
+        .save-wish-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .saved-message {
+            font-family: "Hi Melody Cyrillic", "Hi Melody", serif;
+            color: #4CAF50;
+            font-size: 20px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-bottom: 300px;
+            }
+
+            .game-header h1 {
+                font-size: 36px;
+            }
+
+            .memory-game {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+                margin-bottom: 200px;
+            }
+
+            .card-face {
+                font-size: 35px;
+            }
+
+            .card-front::before {
+                font-size: 40px;
+            }
+
+            .win-content h2 {
+                font-size: 36px;
+            }
+
+            .win-content p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="hearts-background">
+        <div class="heart">💗</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💓</div>
+        <div class="heart">💗</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💓</div>
+        <div class="heart">💗</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💓</div>
+        <div class="heart">💗</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+    </div>
+    
+    <button class="back-btn" onclick="goBack()">← Назад</button>
+
+    <div class="game-header">
+        <h1>Найди все пары! 💕</h1>
+        <p>Открывай карточки и ищи одинаковые пары</p>
+    </div>
+
+    <div class="game-stats">
+        <span>Ходов: <span id="moves">0</span></span> | 
+        <span>Найдено пар: <span id="pairs">0</span>/8</span>
+    </div>
+
+    <div class="memory-game" id="game-board">
+        <!-- Карточки будут добавлены через JavaScript -->
+    </div>
+
+    <!-- Win Screen -->
+    <div class="win-screen" id="win-screen">
+        <!-- Floating hearts background for win screen -->
+        <div class="hearts-background">
+            <div class="heart">💗</div>
+            <div class="heart">💖</div>
+            <div class="heart">💕</div>
+            <div class="heart">💓</div>
+            <div class="heart">💗</div>
+            <div class="heart">💖</div>
+            <div class="heart">💕</div>
+            <div class="heart">💓</div>
+            <div class="heart">💗</div>
+            <div class="heart">💖</div>
+            <div class="heart">💕</div>
+            <div class="heart">💓</div>
+            <div class="heart">💗</div>
+            <div class="heart">💖</div>
+            <div class="heart">💕</div>
+        </div>
+        
+        <div class="win-content">
+            <h2>🎉 Поздравляю! 🎉</h2>
+            <p>Ты нашла все пары!</p>
+            <p>Ходов: <span id="final-moves">0</span></p>
+            
+            <div class="prize-box">
+                <div class="prize-emoji">🎁</div>
+                <div class="prize-text">Напиши что ты хочешь в подарок:</div>
+                <textarea class="wish-input" id="wish-input" placeholder="Опиши свой подарок..."></textarea>
+                <button class="save-wish-btn" onclick="saveWish()">Сохранить желание 💝</button>
+                <div class="saved-message" id="saved-message">✓ Желание сохранено!</div>
+            </div>
+
+            <button class="back-btn" onclick="goBack()" style="position: static; margin-top: 20px; margin-right: 10px;">
+                ← Вернуться к галерее
+            </button>
+            <button class="back-btn" onclick="goToLetter()" style="position: static; margin-top: 20px;">
+                💌 К письму
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const emojis = ['💗', '💖', '💕', '💓', '🌸', '🌹', '🍀', '💌'];
+        
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let moves = 0;
+        let canFlip = true;
+
+        // Перемешиваем карточки
+        function shuffle(array) {
+            const newArray = [...array]; // Создаем копию
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // Создаём игровое поле
+        function createBoard() {
+            const gameBoard = document.getElementById('game-board');
+            const cards = [...emojis, ...emojis]; // Дублируем для пар
+            const shuffledCards = shuffle(cards);
+            
+            shuffledCards.forEach((emoji, index) => {
+                const card = document.createElement('div');
+                card.classList.add('memory-card');
+                card.dataset.emoji = emoji;
+                card.dataset.index = index;
+                
+                card.innerHTML = `
+                    <div class="card-face card-front"></div>
+                    <div class="card-face card-back">${emoji}</div>
+                `;
+                
+                card.addEventListener('click', flipCard);
+                gameBoard.appendChild(card);
+            });
+        }
+
+        // Переворачиваем карточку
+        function flipCard() {
+            if (!canFlip) return;
+            if (this.classList.contains('flip')) return;
+            if (this.classList.contains('matched')) return;
+            
+            this.classList.add('flip');
+            flippedCards.push(this);
+            
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('moves').textContent = moves;
+                canFlip = false;
+                checkMatch();
+            }
+        }
+
+        // Проверяем совпадение
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            const emoji1 = card1.dataset.emoji;
+            const emoji2 = card2.dataset.emoji;
+            
+            if (emoji1 === emoji2) {
+                // Совпадение!
+                // Оставляем flip чтобы карточки оставались повернутыми
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                // НЕ убираем flip!
+                matchedPairs++;
+                document.getElementById('pairs').textContent = matchedPairs;
+                
+                flippedCards = [];
+                canFlip = true;
+                
+                // Проверяем победу
+                if (matchedPairs === 8) {
+                    setTimeout(showWin, 500);
+                }
+            } else {
+                // Не совпадение - закрываем обратно
+                setTimeout(() => {
+                    card1.classList.remove('flip');
+                    card2.classList.remove('flip');
+                    flippedCards = [];
+                    canFlip = true;
+                }, 1000);
+            }
+        }
+
+        // Показываем экран победы
+        function showWin() {
+            document.getElementById('final-moves').textContent = moves;
+            document.getElementById('win-screen').classList.add('show');
+            
+            // Очищаем поле для нового желания
+            document.getElementById('wish-input').value = '';
+        }
+
+        // Сохраняем желание
+        function saveWish() {
+            const wish = document.getElementById('wish-input').value.trim();
+            if (wish) {
+                // Отправляем email через EmailJS
+                const templateParams = {
+                    wish: wish,
+                    date: new Date().toLocaleString('ru-RU')
+                };
+                
+                emailjs.send('service_h9qadif', 'template_2gfxzgb', templateParams)
+                    .then(function(response) {
+                        console.log('Email отправлен успешно!', response.status, response.text);
+                        // ОЧИЩАЕМ localStorage после успешной отправки
+                        localStorage.removeItem('giftWish');
+                    }, function(error) {
+                        console.log('Ошибка отправки email:', error);
+                    });
+                
+                // Выводим в консоль для тебя
+                console.log('=== ЖЕЛАНИЕ СОХРАНЕНО ===');
+                console.log('Дата:', new Date().toLocaleString('ru-RU'));
+                console.log('Желание:', wish);
+                console.log('========================');
+                
+                // Показываем сообщение
+                const message = document.getElementById('saved-message');
+                message.style.display = 'block';
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        // Возврат назад
+        function goBack() {
+            document.body.style.transition = 'opacity 0.5s ease';
+            document.body.style.opacity = '0';
+            setTimeout(function(){
+                window.location.href = 'gallery.html';
+            }, 500);
+        }
+
+        // Переход к письму
+        function goToLetter() {
+            document.body.style.transition = 'opacity 0.5s ease';
+            document.body.style.opacity = '0';
+            setTimeout(function(){
+                window.location.href = 'index.html?from=gallery';
+            }, 500);
+        }
+
+        // Команда для разработчика - открыть все пары
+        window.unlockallpairs = function() {
+            const cards = document.querySelectorAll('.memory-card');
+            cards.forEach(card => {
+                card.classList.add('flip');
+                card.classList.add('matched');
+            });
+            matchedPairs = 8;
+            document.getElementById('pairs').textContent = matchedPairs;
+            setTimeout(showWin, 1000);
+            console.log('🎮 Все пары открыты! Игра завершена.');
+        };
+        
+        console.log('💡 Для разработчика: используй команду unlockallpairs() чтобы открыть все пары сразу');
+
+        // Инициализация игры
+        createBoard();
+    </script>
+</body>
+</html>
