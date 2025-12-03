@@ -181,15 +181,9 @@
     
     /* Для тач-устройств используем класс .card-open вместо :hover */
     .card.card-open {
-        transform: translateX(calc(var(--card-width) * 0.5)) !important;
-        transition: transform 1.5s ease-in-out;
+        transform: translateX(calc(var(--card-width) * .5));
     }
-    
-    .card {
-        transform: translateX(-calc(var(--card-width) * 0.5)) !important;
-        transition: transform 1.5s ease-in-out;
-    }
-    
+
     .card.card-open #pg-1 {
         transform: rotateY(-180deg);
         backface-visibility: hidden;
@@ -203,10 +197,9 @@
 /* Добавляем стили для мобильных устройств вне медиа-запроса hover */
 @media screen and (max-width: 768px) {
     .card.card-open {
-        transform: translateX(calc(var(--card-width) * 0.5)) !important;
-        transition: transform 1.5s ease-in-out;
+        transform: translateX(calc(var(--card-width) * .5));
     }
-    
+
     .card.card-open #pg-1 {
         transform: rotateY(-180deg);
         backface-visibility: hidden;
