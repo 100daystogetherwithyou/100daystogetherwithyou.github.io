@@ -1,100 +1,68 @@
-@media screen and (max-width: 430px) and (min-height: 800px) {
+@media screen and (max-width: 430px) {
     :root {
-        --card-width: 380px;
-        --card-height: 334px;
-    }
-    
-    #letter {
-        padding: 20px 15px;
-    }
-    
-    #letter-content {
-        width: 92%;
-        font-size: 17px;
-        line-height: 1.7;
-    }
-    
-    header {
-        font-size: 42px !important;
-        margin-bottom: 25px;
-        line-height: 1.2;
+        --card-width: 340px;
+        --card-height: 298px;
     }
     
     .hi-melody-regular {
-        font-size: 38px !important;
-        line-height: 1.2;
+        font-size: 32px !important;
     }
     
-    .noto-sans-regular {
-        font-size: 17px !important;
-        line-height: 1.6;
+    #card-content .noto-sans-regular {
+        font-size: 15px !important;
+        line-height: 1.4 !important;
     }
     
-    div[style*="text-align: center"] img {
-        width: 160px !important;
-    }
-    
-    #letter div {
-        margin-top: 1.3em;
-    }
-    
-    div[onclick="hideLetter()"] {
-        font-size: 16px !important;
-        padding: 10px;
-        margin-bottom: 15px;
-        background-color: rgba(255, 182, 213, 0.1);
-        border-radius: 10px;
-        text-align: center;
-    }
-}
-
-@media screen and (max-width: 768px) {
     #letter {
         padding: 15px;
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain;
     }
     
     #letter-content {
         width: 95%;
         font-size: 16px;
-        line-height: 1.6;
     }
     
     header {
-        font-size: 40px !important;
-        margin-bottom: 20px;
+        font-size: 36px !important;
     }
     
-    .hi-melody-regular {
-        font-size: 35px !important;
+    div[style*="text-align: center"] img {
+        width: 140px !important;
+    }
+}
+
+@media screen and (max-width: 768px) and (min-width: 431px) {
+    :root {
+        --card-width: 380px;
+        --card-height: 333px;
     }
     
-    .noto-sans-regular {
-        font-size: 16px !important;
-        line-height: 1.5;
+    #letter {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
     }
     
     img {
         max-width: 100%;
         height: auto;
     }
-    
-    #card-content {
-        padding: 15px !important;
-    }
-    
-    .noto-sans-regular[onclick] {
-        padding: 15px;
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 10px;
-        margin-top: 10px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 375px) {
+    :root {
+        --card-width: 300px;
+        --card-height: 263px;
+    }
+    
+    .hi-melody-regular {
+        font-size: 28px !important;
+    }
+    
+    #card-content .noto-sans-regular {
+        font-size: 13px !important;
+        line-height: 1.3 !important;
+    }
+    
     #letter {
         padding: 10px;
     }
@@ -106,18 +74,6 @@
     
     header {
         font-size: 32px !important;
-    }
-    
-    .hi-melody-regular {
-        font-size: 28px !important;
-    }
-    
-    .noto-sans-regular {
-        font-size: 15px !important;
-    }
-    
-    div[style*="text-align: center"] img {
-        width: 130px !important;
     }
 }
 
