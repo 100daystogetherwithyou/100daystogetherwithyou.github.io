@@ -24,15 +24,6 @@
         margin-top: calc((100vh - var(--card-height)) / 2) !important;
     }
     
-    /* Не трогаем логику открытия карточки - она работает */
-    .card:hover {
-        transform: translateX(calc(var(--card-width) * 0.5)) !important;
-    }
-    
-    .card {
-        transform: translateX(-calc(var(--card-width) * 0.5)) !important;
-    }
-    
     /* Фикс для письма на мобильном */
     #letter {
         position: fixed !important;
@@ -107,14 +98,6 @@
         margin-top: calc((100vh - var(--card-height)) / 2) !important;
     }
     
-    .card:hover {
-        transform: translateX(calc(var(--card-width) * 0.5)) !important;
-    }
-    
-    .card {
-        transform: translateX(-calc(var(--card-width) * 0.5)) !important;
-    }
-    
     #letter {
         position: fixed !important;
         top: 0 !important;
@@ -161,14 +144,6 @@
     .card-beginning {
         left: calc(50% - (var(--card-width) * 0.5)) !important;
         margin-top: calc((100vh - var(--card-height)) / 2) !important;
-    }
-    
-    .card:hover {
-        transform: translateX(calc(var(--card-width) * 0.5)) !important;
-    }
-    
-    .card {
-        transform: translateX(-calc(var(--card-width) * 0.5)) !important;
     }
     
     #letter {
@@ -225,21 +200,40 @@
         justify-content: center;
     }
     
-    /* Для тач-устройств применяем ту же логику открытия */
-    .card:hover {
+    /* Для тач-устройств используем класс .card-open вместо :hover */
+    .card.card-open {
         transform: translateX(calc(var(--card-width) * 0.5)) !important;
+        transition: transform 1.5s ease-in-out;
     }
     
     .card {
         transform: translateX(-calc(var(--card-width) * 0.5)) !important;
+        transition: transform 1.5s ease-in-out;
     }
     
-    .card:hover #pg-1 {
+    .card.card-open #pg-1 {
         transform: rotateY(-180deg);
         backface-visibility: hidden;
     }
     
-    .card:hover #pg-2 {
+    .card.card-open #pg-2 {
+        transform: rotateY(-179.9deg) translateX(-1px);
+    }
+}
+
+/* Добавляем стили для мобильных устройств вне медиа-запроса hover */
+@media screen and (max-width: 768px) {
+    .card.card-open {
+        transform: translateX(calc(var(--card-width) * 0.5)) !important;
+        transition: transform 1.5s ease-in-out;
+    }
+    
+    .card.card-open #pg-1 {
+        transform: rotateY(-180deg);
+        backface-visibility: hidden;
+    }
+    
+    .card.card-open #pg-2 {
         transform: rotateY(-179.9deg) translateX(-1px);
     }
 }
