@@ -1,0 +1,154 @@
+@font-face {
+    font-family: 'Hi Melody Cyrillic';
+    src: url('media/fonts/hi-melody-cyrillic.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    --card-width: 500px;
+    --card-height: 439px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body{
+    perspective: 1200px;
+    height: 100%;
+    margin: 0px;
+    overflow: hidden;
+}
+
+header {
+    text-align: center;
+}
+
+#letter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: white;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+#letter-content {
+    width: 70%;
+    max-width: 800px;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+#letter div {
+    margin-top: 1em;
+}
+
+.hide {
+    transition: opacity 1s;
+    opacity: 0;
+    z-index: -1;
+}
+
+.show {
+    transition: opacity 1s;
+    opacity: 1;
+    z-index: 0;
+}
+
+.hi-melody-regular {
+    font-family: "Hi Melody Cyrillic", "Hi Melody", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+}
+
+.noto-sans-regular {
+    font-family: "Noto Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+#song{
+    display: none;
+}
+
+#clicker{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center; /* horizontal */
+    align-items: center; /* vertical */
+}
+
+.card-beginning{
+    position: fixed;
+    transform-style: preserve-3d;
+    height: var(--card-height);
+    left: calc(50% - (var(--card-width) * .5));
+    margin-top: calc((100vh - var(--card-height)) / 2);
+    transform: translateY(-1000px); /* translated from original position */
+}
+
+.card{
+    transition: transform ease-out 5s; /* transitions back to original position*/
+}
+
+[id^="pg"]{
+    position: absolute;
+    width: var(--card-width);
+    height: 100%;
+    transform-origin: left center;
+    transition: transform 1.75s ease-in-out;
+    /* background-color: white; */
+    /* background-image: url("media/texture.jpg"); */
+    background-size: var(--card-width);
+    border: none;
+}
+
+[id^="pg"] img{
+    height: 100%;
+    width: 100%;
+}
+
+#card-content{
+    position: inherit;
+    width: 100%;
+    left: 0;
+    top: 30%;
+    text-align: center;
+
+}
+
+.card:hover{
+    transform: translateX(calc(var(--card-width) * .5));
+    transition: transform 1.5s ease-in-out;
+}
+
+.card{
+    transform: translateX(-calc(var(--card-width) * .5));
+    transition: transform 1.5s ease-in-out;
+}
+
+.card:hover #pg-1 {
+    transform: rotateY(-180deg);
+    backface-visibility: hidden;
+}
+
+.card:hover #pg-2 {
+    transform: rotateY(-179.9deg) translateX(-1px);
+}
+
+.flip-content{
+    transform: scaleX(-1);
+}

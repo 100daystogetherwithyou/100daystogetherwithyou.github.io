@@ -1,0 +1,173 @@
+@media screen and (max-width: 430px) and (min-height: 800px) {
+    :root {
+        --card-width: 380px;
+        --card-height: 334px;
+    }
+    
+    #letter {
+        padding: 20px 15px;
+    }
+    
+    #letter-content {
+        width: 92%;
+        font-size: 17px;
+        line-height: 1.7;
+    }
+    
+    header {
+        font-size: 42px !important;
+        margin-bottom: 25px;
+        line-height: 1.2;
+    }
+    
+    .hi-melody-regular {
+        font-size: 38px !important;
+        line-height: 1.2;
+    }
+    
+    .noto-sans-regular {
+        font-size: 17px !important;
+        line-height: 1.6;
+    }
+    
+    div[style*="text-align: center"] img {
+        width: 160px !important;
+    }
+    
+    #letter div {
+        margin-top: 1.3em;
+    }
+    
+    div[onclick="hideLetter()"] {
+        font-size: 16px !important;
+        padding: 10px;
+        margin-bottom: 15px;
+        background-color: rgba(255, 182, 213, 0.1);
+        border-radius: 10px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #letter {
+        padding: 15px;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+    
+    #letter-content {
+        width: 95%;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    
+    header {
+        font-size: 40px !important;
+        margin-bottom: 20px;
+    }
+    
+    .hi-melody-regular {
+        font-size: 35px !important;
+    }
+    
+    .noto-sans-regular {
+        font-size: 16px !important;
+        line-height: 1.5;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    #card-content {
+        padding: 15px !important;
+    }
+    
+    .noto-sans-regular[onclick] {
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #letter {
+        padding: 10px;
+    }
+    
+    #letter-content {
+        width: 98%;
+        font-size: 15px;
+    }
+    
+    header {
+        font-size: 32px !important;
+    }
+    
+    .hi-melody-regular {
+        font-size: 28px !important;
+    }
+    
+    .noto-sans-regular {
+        font-size: 15px !important;
+    }
+    
+    div[style*="text-align: center"] img {
+        width: 130px !important;
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+    body {
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    * {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    
+    #letter {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .noto-sans-regular[onclick]:active {
+        background-color: rgba(255, 182, 213, 0.3) !important;
+        transform: scale(0.98);
+    }
+    
+    div[onclick="hideLetter();"]:active {
+        background-color: rgba(255, 182, 213, 0.2) !important;
+        transform: scale(0.98);
+    }
+    
+    [onclick] {
+        touch-action: manipulation;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #card:hover {
+        transform: translateX(calc(var(--card-width) * .5)) !important;
+    }
+    
+    .card:hover #pg-1 {
+        transform: rotateY(-180deg);
+        backface-visibility: hidden;
+    }
+    
+    .card:hover #pg-2 {
+        transform: rotateY(-179.9deg) translateX(-1px);
+    }
+}

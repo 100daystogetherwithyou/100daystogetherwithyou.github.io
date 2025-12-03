@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="119.73153mm"
+   height="105.2415mm"
+   viewBox="0 0 119.73153 105.2415"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs id="defs1">
+    <!-- Define the gradient for the fill -->
+    <linearGradient id="pinkGradientFill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffb6c1;stop-opacity:1" /> <!-- Light Pink -->
+      <stop offset="100%" style="stop-color:#ff69b4;stop-opacity:1" /> <!-- Darker Pink -->
+    </linearGradient>
+    <!-- Define the gradient for the stroke -->
+    <linearGradient id="pinkGradientStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffb6c1;stop-opacity:1" /> <!-- Light Pink -->
+      <stop offset="100%" style="stop-color:#ff69b4;stop-opacity:1" /> <!-- Darker Pink -->
+    </linearGradient>
+  </defs>
+  <g id="layer1" transform="translate(-40.5323,-74.517419)">
+    <path
+       id="rect1"
+       style="fill:url(#pinkGradientFill);stroke:url(#pinkGradientStroke);stroke-width:0.274339;stroke-dasharray:none"
+       d="m 67.50265,74.714705 a 32.149045,30.012288 57.944332 0 0 -18.538336,8.50038 32.149045,30.012288 57.944332 0 0 1.082558,44.310665 l -0.07677,0.0791 8.349041,8.60323 42.072937,43.35387 42.07295,-43.35387 8.34905,-8.60323 -0.0648,-0.0668 a 30.012288,32.149045 32.055668 0 0 1.07007,-44.323519 30.012288,32.149045 32.055668 0 0 -43.00146,1.115518 l -0.0773,-0.07911 -8.34856,8.60323 -8.349046,-8.60323 -0.06478,0.06675 A 32.149045,30.012288 57.944332 0 0 67.50265,74.714705 Z" />
+  </g>
+</svg>

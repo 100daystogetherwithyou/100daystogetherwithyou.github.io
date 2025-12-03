@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="119.73153mm"
+   height="105.2415mm"
+   viewBox="0 0 119.73153 105.2415"
+   version="1.1"
+   id="svg2"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs id="defs2">
+    <!-- Define the gradient for the fill -->
+    <linearGradient id="pinkGradientFill2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffc0cb;stop-opacity:0.7" /> <!-- Light Pink with transparency -->
+      <stop offset="100%" style="stop-color:#ff69b4;stop-opacity:0.9" /> <!-- Hot Pink -->
+    </linearGradient>
+  </defs>
+  <g id="layer2" transform="translate(-40.5323,-74.517419)">
+    <path
+       id="heart2"
+       style="fill:url(#pinkGradientFill2);stroke:none;"
+       d="m 67.50265,74.714705 a 32.149045,30.012288 57.944332 0 0 -18.538336,8.50038 32.149045,30.012288 57.944332 0 0 1.082558,44.310665 l -0.07677,0.0791 8.349041,8.60323 42.072937,43.35387 42.07295,-43.35387 8.34905,-8.60323 -0.0648,-0.0668 a 30.012288,32.149045 32.055668 0 0 1.07007,-44.323519 30.012288,32.149045 32.055668 0 0 -43.00146,1.115518 l -0.0773,-0.07911 -8.34856,8.60323 -8.349046,-8.60323 -0.06478,0.06675 A 32.149045,30.012288 57.944332 0 0 67.50265,74.714705 Z" />
+    <!-- Add some decorative elements for the flipped side -->
+    <g transform="translate(100,127)" style="opacity:0.6;">
+      <circle cx="-20" cy="0" r="8" fill="white"/>
+      <circle cx="0" cy="0" r="8" fill="white"/>
+      <circle cx="20" cy="0" r="8" fill="white"/>
+    </g>
+  </g>
+</svg>
