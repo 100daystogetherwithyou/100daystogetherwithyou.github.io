@@ -95,9 +95,9 @@ header {
     position: fixed;
     transform-style: preserve-3d;
     height: var(--card-height);
-    left: calc(50% - (var(--card-width) * .5));
-    margin-top: calc((100vh - var(--card-height)) / 2);
-    transform: translateY(-1000px); /* translated from original position */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translateY(-1000px); /* translated from original position and centered */
 }
 
 .card{
