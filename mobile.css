@@ -4,6 +4,10 @@
         --card-height: calc(85vw * 0.878);
     }
     
+    body {
+        overflow-x: hidden;
+    }
+    
     .hi-melody-regular {
         font-size: clamp(26px, 6vw, 32px) !important;
     }
@@ -14,44 +18,122 @@
         padding: 3px !important;
     }
     
-    /* Центрирование карточки */
+    /* Центрирование карточки - используем ту же логику что на десктопе */
     .card-beginning {
         left: calc(50% - (var(--card-width) * 0.5)) !important;
         margin-top: calc((100vh - var(--card-height)) / 2) !important;
     }
     
-    /* Расширение карточки при открытии */
+    /* Не трогаем логику открытия карточки - она работает */
     .card:hover {
         transform: translateX(calc(var(--card-width) * 0.5)) !important;
     }
     
+    .card {
+        transform: translateX(-calc(var(--card-width) * 0.5)) !important;
+    }
+    
+    /* Фикс для письма на мобильном */
     #letter {
-        padding: 15px;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        padding: 15px !important;
+        box-sizing: border-box !important;
+        z-index: 1000;
+    }
+    
+    #letter header {
+        font-size: 32px !important;
+        text-align: center;
+        margin-bottom: 15px;
+        position: sticky;
+        top: 0;
+        background: white;
+        padding: 10px 0;
+        z-index: 10;
     }
     
     #letter-content {
-        width: 95%;
-        font-size: 16px;
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+        box-sizing: border-box !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     
-    header {
-        font-size: 36px !important;
+    #letter-content > div {
+        margin-top: 1em;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     
     div[style*="text-align: center"] img {
-        width: 140px !important;
+        width: 120px !important;
+        height: auto !important;
+    }
+    
+    /* Кнопка возврата */
+    #letter-content > div:first-child {
+        position: sticky;
+        top: 60px;
+        background: white;
+        padding: 10px;
+        margin: 0 -10px 15px -10px;
+        text-align: center;
+        border-radius: 8px;
+        z-index: 9;
     }
 }
 
 @media screen and (max-width: 768px) and (min-width: 431px) {
     :root {
-        --card-width: 380px;
-        --card-height: 333px;
+        --card-width: 70vw;
+        --card-height: calc(70vw * 0.878);
+    }
+    
+    body {
+        overflow-x: hidden;
+    }
+    
+    .card-beginning {
+        left: calc(50% - (var(--card-width) * 0.5)) !important;
+        margin-top: calc((100vh - var(--card-height)) / 2) !important;
+    }
+    
+    .card:hover {
+        transform: translateX(calc(var(--card-width) * 0.5)) !important;
+    }
+    
+    .card {
+        transform: translateX(-calc(var(--card-width) * 0.5)) !important;
     }
     
     #letter {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        padding: 20px !important;
+        box-sizing: border-box !important;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
+    }
+    
+    #letter-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: 16px !important;
+        margin: 0 !important;
     }
     
     img {
@@ -76,28 +158,33 @@
         padding: 2px !important;
     }
     
-    /* Центрирование карточки для маленьких экранов */
     .card-beginning {
         left: calc(50% - (var(--card-width) * 0.5)) !important;
         margin-top: calc((100vh - var(--card-height)) / 2) !important;
     }
     
-    /* Расширение карточки при открытии для маленьких экранов */
     .card:hover {
         transform: translateX(calc(var(--card-width) * 0.5)) !important;
     }
     
+    .card {
+        transform: translateX(-calc(var(--card-width) * 0.5)) !important;
+    }
+    
     #letter {
-        padding: 10px;
+        padding: 10px !important;
+    }
+    
+    #letter header {
+        font-size: 28px !important;
     }
     
     #letter-content {
-        width: 98%;
-        font-size: 15px;
+        font-size: 14px !important;
     }
     
-    header {
-        font-size: 32px !important;
+    div[style*="text-align: center"] img {
+        width: 100px !important;
     }
 }
 
@@ -138,8 +225,13 @@
         justify-content: center;
     }
     
-    #card:hover {
-        transform: translateX(calc(var(--card-width) * .5)) !important;
+    /* Для тач-устройств применяем ту же логику открытия */
+    .card:hover {
+        transform: translateX(calc(var(--card-width) * 0.5)) !important;
+    }
+    
+    .card {
+        transform: translateX(-calc(var(--card-width) * 0.5)) !important;
     }
     
     .card:hover #pg-1 {
